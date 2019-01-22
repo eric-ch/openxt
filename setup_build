@@ -107,7 +107,7 @@ setup_git_repo bitbake $BB_BRANCH
 
 # Pull down OE repos
 for repo in openembedded-core meta-openembedded meta-java meta-selinux \
-            meta-intel meta-virtualization; do
+            meta-intel meta-virtualization meta-qt5; do
     setup_git_repo $repo $OE_BRANCH
 done
 

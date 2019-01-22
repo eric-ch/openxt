@@ -26,3 +26,7 @@
 	path = build/repos/meta-virtualization
 	url = git://git.yoctoproject.org/meta-virtualization
 	branch = pyro
+[submodule "build/repos/meta-qt5"]
+	path = build/repos/meta-qt5
+	url = git://github.com/meta-qt5/meta-qt5.git
+	branch = pyro
