@@ -41,3 +41,9 @@ MIRRORS += " \
     http://www.seabios.org/downloads/.*                 https://www.seabios.org/downloads/ \n \
     git://anonscm.debian.org/collab-maint/ltrace.git    git://github.com/sparkleholic/ltrace.git \n \
 "
+
+# OpenXT: Set SELinux enforcing (Debug)
+DEFAULT_ENFORCING = "permissive"
+
+# OpenXT: Enable debugging tweaks.
+EXTRA_IMAGE_FEATURES += "debug-tweaks"
