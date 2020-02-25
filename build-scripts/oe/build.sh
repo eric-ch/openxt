@@ -131,9 +131,15 @@ build_image() {
         $RSYNC ${SOURCE_LICENSES} ${TARGET}/licenses/
     fi
 
-    # Transfer additionnal files
+    # Transfer files to be deployed on install media.
     if [ -d ${SOURCE_EXTRAS} ]; then
         $RSYNC ${SOURCE_EXTRAS}/ ${TARGET}/${REAL_NAME}
+    fi
+    if [ -d tmp-glibc/deploy/images/${MACHINE}/iso ]; then
+        $RSYNC tmp-glibc/deploy/images/${MACHINE}/iso ${TARGET}
+    fi
+    if [ -d tmp-glibc/deploy/images/${MACHINE}/netboot ]; then
+        $RSYNC tmp-glibc/deploy/images/${MACHINE}/netboot ${TARGET}
     fi
 
     # Transfer installer EFI files
