@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WinbuildConfig>
+  <!-- Section 1: These nodes contain static values some of which are site specific -->
+  <LogDir>logs</LogDir>
+  <OutDir>output</OutDir>
+  <DdkDir>C:\WinDDK\7600.16385.1</DdkDir>
+  <VSDir>"C:\Program Files (x86)\Microsoft Visual Studio 11.0"</VSDir>
+  <MSBuild>C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe</MSBuild>
+  <GitBin>C:\Program Files\Git\bin\git.exe</GitBin>
+  <GitUrl>git://github.com/OpenXT</GitUrl>
+  <DefaultEula>True</DefaultEula>
+  <CertName>developer</CertName>
+  <!-- if you want to cross sign put the path of a cross signing certificate here in a CrossSign node-->
+  <CompanyName>OpenXT</CompanyName>
+  <SignTool>"C:\Program Files\Windows Kits\8.0\bin\x86"</SignTool>
+
+  <!-- Section 2: These nodes are updated with the input to the build script for each build:
+     BuildTag, BuildBranch, BuildNumber
+     VerMajor, VerMinor, VerMicro,
+     VerString,
+     BuildType (Realease | Debuf),
+     Developer (True | False),
+     License
+  -->
+  <BuildTag></BuildTag>
+  <BuildBranch></BuildBranch>
+  <BuildNumber></BuildNumber>
+  <VerMajor></VerMajor>
+  <VerMinor></VerMinor>
+  <VerMicro></VerMicro>
+  <VerString></VerString>
+  <BuildType>Release</BuildType>
+  <Developer>false</Developer>
+  <License></License>
+
+  <!-- Section 3: These are the repos that are necessary to the build -->
+  <Steps>
+    <Step name="xc-windows" clone="false">
+      <Run execute="true" command="Powershell" path="xc-windows\do_build.ps1">
+        <Parameters>
+          <Param>DdkDir</Param>
+          <Param>License</Param>
+          <Param>BuildType</Param>
+          <Param>Developer</Param>
+          <Param>CertName</Param>
+          <Param>SignTool</Param>
+          <Param>DefaultEula</Param>
+          <Param>VSDir</Param>
+          <Param>VerString</Param>
+          <Param>VerMajor</Param>
+          <Param>VerMinor</Param>
+          <Param>VerMicro</Param>
+          <Param>BuildNumber</Param>
+          <Param>BuildTag</Param>
+          <Param>BuildBranch</Param>
+          <Param>MSBuild</Param>
+          <Param>GitUrl</Param>
+          <Param>GitBin</Param>
+          <Param>CrossSign</Param>
+        </Parameters>
+      </Run>
+    </Step>
+    <Step name="msi-installer" clone="false">
+      <Run execute="true" command="Powershell" path="BuildSupport\winbuild-installer.ps1">
+        <Parameters>
+        </Parameters>
+      </Run>
+    </Step>
+    <Step name="Build MSIs" clone="false">
+      <Run execute="true" command="Powershell" path="msi-installer\installer\do_build.ps1">
+        <Parameters>
+          <Param>BuildTag</Param>
+          <Param>VerString</Param>
+          <Param>CertName</Param>
+          <Param>CompanyName</Param>
+          <Param>SignTool</Param>
+        </Parameters>
+      </Run>
+    </Step>
+    <Step name="Build Setup" clone="false">
+      <Run execute="true" command="Powershell" path="msi-installer\bootstrapper\do_build.ps1">
+        <Parameters>
+          <Param>BuildType</Param>
+          <Param>CertName</Param>
+          <Param>VerString</Param>
+          <Param>SignTool</Param>
+        </Parameters>
+      </Run>
+    </Step>
+    <Step name="Stage" clone="false">
+      <Run execute="true" command="Powershell" path="BuildSupport\winbuild-stage.ps1">
+        <Parameters>
+          <Param>OutDir</Param>
+        </Parameters>
+      </Run>
+    </Step>
+  </Steps>
+</WinbuildConfig>
