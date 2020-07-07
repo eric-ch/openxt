@@ -41,3 +41,6 @@ MIRRORS += " \
     http://www.seabios.org/downloads/.*                 https://www.seabios.org/downloads/ \n \
     git://anonscm.debian.org/collab-maint/ltrace.git    git://github.com/sparkleholic/ltrace.git \n \
 "
+
+# Handle branch renaming until pushed in upstream recipes.
+SRC_URI_pn-iso-codes = "git://salsa.debian.org/iso-codes-team/iso-codes.git;protocol=https;branch=main"
