@@ -427,5 +427,5 @@ function Install-Python {
   } else {
     PerformDownload "$pythonUrl" $pythonInstaller
   }
-  Invoke-CommandChecked msiexec.exe /i $python /qn
+  Invoke-CommandChecked msiexec.exe /i $python /qn ALLUSERS=1
 }
