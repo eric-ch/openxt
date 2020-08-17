@@ -60,8 +60,8 @@ $win8sdkUrl  = "http://download.microsoft.com/download/F/1/3/F1300C9C-A120-4341-
 $wixUrl      = "https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe"
 $capicomUrl  = "http://download.microsoft.com/download/7/7/0/7708ec16-a770-4777-8b85-0fcd05f5ba60/capicom_dc_sdk.msi"
 $vs2012u4Url = "http://download.microsoft.com/download/D/4/8/D48D1AC2-A297-4C9E-A9D0-A218E6609F06/VSU4/VS2012.4.exe"
-$pythonUrl   = "https://www.python.org/ftp/python/2.7.11/python-2.7.11.msi"
-$python64Url = "https://www.python.org/ftp/python/2.7.11/python-2.7.11.amd64.msi"
+$pythonUrl   = "https://www.python.org/ftp/python/2.7.18/python-2.7.18.msi"
+$python64Url = "https://www.python.org/ftp/python/2.7.18/python-2.7.18.amd64.msi"
 
 # Temp folder. For convenience only, do not change this value.
 $tmp = $env:temp + "\"
